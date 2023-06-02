@@ -60,7 +60,7 @@ def get_many_inputs():
 def scrape_channel_data(channel_id):
     channel_data = {}
 
-    api_key = "AIzaSyBcfV870sP3uHLDi8UEnTsEQ72Xrpt0Op8"
+    api_key = "AIyBcfV8sEQ3663Op8" #enter your key
     youtube = build('youtube', 'v3', developerKey=api_key)    
 
     # Get channel details
@@ -97,7 +97,7 @@ def scrape_channel_playlists(channel_id):
 
     playlist_data = {}
 
-    api_key = "AIzaSyBcfV870sP3uHLDi8UEnTsEQ72Xrpt0Op8"
+    api_key = "AIzaSyc0Op8"
     youtube = build('youtube', 'v3', developerKey=api_key)
 
 
@@ -155,7 +155,7 @@ from googleapiclient.errors import HttpError
 
 def scrape_vedio_data(channel_id):
                # Set up the YouTube Data API client
-    api_key = "AIzaSyBcfV870sP3uHLDi8UEnTsEQ72Xrpt0Op8"
+    api_key = "AIzaSyBcfV8"
     youtube = build('youtube', 'v3', developerKey=api_key)
 
     try:
@@ -191,8 +191,11 @@ def scrape_vedio_data(channel_id):
 
             try:
                 comments = {}
+                
+                #uuid library genarates random number which acts as unique key                
                 import uuid
-                comment_idd =  str(uuid.uuid4())
+                
+                comment_idd =  str(uuid.uuid4())  # <- 4 sigit random number as text
                 # Get the video comments
                 comments_response = youtube.commentThreads().list(
                     part='snippet',
@@ -261,7 +264,7 @@ def get_mongo_channel_names():
 
     from pymongo import MongoClient
     # MongoDB connection
-    mongo_client = MongoClient("mongodb+srv://wes:abc@bookshelf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
+    mongo_client = MongoClient("mongodb+sr0fiuyr.mongodb.net/?retryWrites=true&w=majority") # enter your mongo connection string
     mongo_db = mongo_client["youtube_data_lake"]
     mongo_collection = mongo_db["data"]
 
@@ -300,7 +303,7 @@ def store_to_datalake(chid):
         from googleapiclient.discovery import build
 
         # MongoDB connection
-        mongo_client = MongoClient("mongodb+srv://wes:abc@bookshelf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
+        mongo_client = MongoClient("mongodb+srw0fiuyr.mongodb.net/?retryWrites=true&w=majority")
         mongo_db = mongo_client["youtube_data_lake"]
         mongo_collection = mongo_db["data"]
 
@@ -319,7 +322,7 @@ def store_to_datalake(chid):
 
         st.write("Data uploaded")
 
-##########################################################
+
 
 import mysql.connector
 from pymongo import MongoClient
@@ -330,7 +333,7 @@ def create_db_schema(database_name, table_name1,table_name2,table_name3,table_na
     mysql_db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password"
+        password="<your password>"
     )
     mysql_cursor = mysql_db.cursor()
 
@@ -402,7 +405,7 @@ def channel_table(database_name, table_name,channel_name):
    
 
     # MongoDB connection
-    mongo_client = MongoClient("mongodb+srv://wes:abc@bookshelf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
+    mongo_client = MongoClient("mongodb+srv:yr.mongodb.net/?retryWrites=true&w=majority")
     mongo_db = mongo_client["youtube_data_lake"]
     mongo_collection = mongo_db["data"]
 
@@ -435,7 +438,7 @@ def playlist_table(database_name, table_name,channel_name):
     mysql_db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password"
+        password="<your password>"
     )
     mysql_cursor = mysql_db.cursor()
 
@@ -444,7 +447,7 @@ def playlist_table(database_name, table_name,channel_name):
     mysql_cursor.execute(f"USE {database_name}")
     
     # MongoDB connection
-    mongo_client = MongoClient("mongodb+srv://wes:abc@bookshelf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
+    mongo_client = MongoClient("mongolf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
     mongo_db = mongo_client["youtube_data_lake"]
     mongo_collection = mongo_db["data"]
 
@@ -488,7 +491,7 @@ def Video_table(database_name, table_name,channel_name):
     mysql_db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password"
+        password="<your password>"
     )
     mysql_cursor = mysql_db.cursor()
 
@@ -496,7 +499,7 @@ def Video_table(database_name, table_name,channel_name):
     mysql_cursor.execute(f"CREATE DATABASE IF NOT EXISTS {database_name}")
     mysql_cursor.execute(f"USE {database_name}")
    
-    mongo_client = MongoClient("mongodb+srv://wes:abc@bookshelf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
+    mongo_client = MongoClient("mongodb+.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
     mongo_db = mongo_client["youtube_data_lake"]
     mongo_collection = mongo_db["data"]
 
@@ -549,7 +552,7 @@ def comments_table(database_name, table_name,channel_name):
     mysql_db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password"
+        password="<your password>"
     )
     mysql_cursor = mysql_db.cursor()
 
@@ -558,7 +561,7 @@ def comments_table(database_name, table_name,channel_name):
     mysql_cursor.execute(f"USE {database_name}")
   
     # MongoDB connection
-    mongo_client = MongoClient("mongodb+srv://wes:abc@bookshelf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
+    mongo_client = MongoClient("mongodb+srokshelf.w0fiuyr.mongodb.net/?retryWrites=true&w=majority")
     mongo_db = mongo_client["youtube_data_lake"]
     mongo_collection = mongo_db["data"]
 
@@ -619,7 +622,7 @@ def sql_check_channel_names(channel_name):
         mysql_db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password"
+        password="<your password>"
         )
         mysql_cursor = mysql_db.cursor()   
         mysql_cursor.execute(f"CREATE DATABASE IF NOT EXISTS {database_name}")
@@ -680,7 +683,7 @@ def retrieve(question):
     mysql_db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password",
+        password="<your password>",
         database="youtube"  # Specify the database name you wabt to reterive information from 
     )
     mysql_cursor = mysql_db.cursor()
@@ -896,7 +899,7 @@ def main():
         mysql_db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password"
+        password="<your password>"
         )
         mysql_cursor = mysql_db.cursor()  
         # Execute the query
